@@ -20,6 +20,20 @@
       "attention": false,
       "date": "03-02-2019",
       "tech": "Sara Wilson"
+    },
+    {
+      "message": "Test log",
+      "attention": true,
+      "tech": "John Doe",
+      "date": "2020-08-14T14:57:40.276Z",
+      "id": 4
+    },
+    {
+      "message": "Another test log",
+      "attention": false,
+      "tech": "Sara Wilson",
+      "date": "2020-08-14T14:58:01.921Z",
+      "id": 5
     }
   ],
   "techs": [

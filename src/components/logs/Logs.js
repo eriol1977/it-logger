@@ -1,27 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import LogItem from './LogItem';
 import Preloader from '../layout/Preloader';
+import PropTypes from 'prop-types';
+import { getLogs } from '../../actions/logActions';
 
-const Logs = () => {
-  const [logs, setLogs] = useState([]);
-  const [loading, setLoading] = useState(false);
-
+// state and actions are passed in as props by 'connect'
+const Logs = ({ log: { logs, loading }, getLogs }) => {
   useEffect(() => {
     getLogs();
     // eslint-disable-next-line
   }, []);
 
-  const getLogs = async () => {
-    setLoading(true);
-
-    const res = await fetch('/logs'); // the full path is informed in the proxy field in package.json
-    const data = await res.json(); // fetch doesn't return the data in json format directly, like axios
-
-    setLogs(data);
-    setLoading(false);
-  };
-
-  if (loading) {
+  if (loading || logs === null) {
     return <Preloader />;
   }
 
@@ -41,4 +32,15 @@ const Logs = () => {
   );
 };
 
-export default Logs;
+Logs.propTypes = {
+  log: PropTypes.object.isRequired,
+  getLogs: PropTypes.func.isRequired,
+};
+
+// the app level state is mapped to local props
+const mapStateToProps = (state) => ({
+  log: state.log, // .log must be the same name defined in the root reducer
+});
+
+// connects Redux to this component, passing the state as props and an object with all the actions we want to use
+export default connect(mapStateToProps, { getLogs })(Logs);
