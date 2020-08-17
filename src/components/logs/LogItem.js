@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteLog } from '../../actions/logActions';
+import { deleteLog, setCurrent } from '../../actions/logActions';
 import Moment from 'react-moment';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 // log comes from the Logs component, while deleteLog is the action which comes from connect
-const LogItem = ({ log, deleteLog }) => {
+const LogItem = ({ log, deleteLog, setCurrent }) => {
   const onDelete = () => {
     deleteLog(log.id);
     M.toast({ html: 'Log Deleted' });
@@ -20,6 +20,7 @@ const LogItem = ({ log, deleteLog }) => {
           className={`modal-trigger ${
             log.attention ? 'red-text' : 'blue-text'
           }`}
+          onClick={() => setCurrent(log)}
         >
           {log.message}
         </a>
@@ -40,7 +41,8 @@ const LogItem = ({ log, deleteLog }) => {
 LogItem.propTypes = {
   log: PropTypes.object.isRequired,
   deleteLog: PropTypes.func.isRequired,
+  setCurrent: PropTypes.func.isRequired,
 };
 
 // connects Redux to this component, passing only the action, with null because we don't need any state here
-export default connect(null, { deleteLog })(LogItem);
+export default connect(null, { deleteLog, setCurrent })(LogItem);

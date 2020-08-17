@@ -9,17 +9,17 @@
     },
     {
       "id": 2,
-      "message": "Workstation 007 not posting",
-      "attention": true,
-      "date": "03-02-2019",
-      "tech": "John Doe"
+      "message": "Workstation 007 now posting correctly",
+      "attention": false,
+      "tech": "Sara Wilson",
+      "date": "2020-08-17T08:53:14.690Z"
     },
     {
       "id": 3,
-      "message": "Changed memory on workstation 006",
-      "attention": false,
-      "date": "03-02-2019",
-      "tech": "Sara Wilson"
+      "message": "Changed memory on workstation 006 --> needs more attention!",
+      "attention": true,
+      "tech": "Sam Smith",
+      "date": "2020-08-17T08:53:49.487Z"
     },
     {
       "message": "Test log",
